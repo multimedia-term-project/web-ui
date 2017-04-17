@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var http = require('http');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -116,25 +117,41 @@ router.post('/register', function(req, res, next){
 
 	if(error == 0){
 		var user={
-			"userName": userName, 
+			"email": email, 
 			"password": password, 
-			"email": email,
+			"name": userName,
 
 		};
-		console.log(user);
+		 
+		var options = {
+  			host: 'localhost',
+  			path: '/user/signup',
+  			//since we are listening on a custom port, we need to specify it by hand
+  			port: '3000',
+  			//This is what changes the request to a POST request
+  			method: 'POST'
+		};
+	
+		callback = function(response) {
+  			var str = ''
+  			response.on('data', function (chunk) {
+    			str += chunk;
+  			});
+
+  			response.on('end', function () {
+    			console.log(str);
+  			});
+		
+		}
+
+		var req = http.request(options, callback);
+		//This is the data we are posting, it needs to be a string or a buffer
+		req.write(json.stringify(user));
+		req.end();
 	}
 
-
-
-
-
-
-
-
-
-
-
-
 });
+
+
 
 module.exports = router;
