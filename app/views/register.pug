@@ -5,14 +5,14 @@ html
     link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
     link(rel='stylesheet', href='stylesheets/style.css')
   body
+    p #{nameError} 
+    p #{passwordError}
+    p #{emailError}
+    p #{confirmEmailError}
     .login.well
       h1  Enter information below!
       hr
-      form(id='register-form', method='POST', action='/registerUser')
-        .form-group
-          label(for='display') Display Name
-          input(type='text', name='display', class='form-control', 
-            id='display', placeholder='Enter display name')
+      form(id='register-form', method='POST', action='/register')
         .form-group
           label(for='username') Username
           input(type='text', name='userName', class='form-control', 
@@ -22,17 +22,13 @@ html
           input(type='password', name='password', class='form-control', 
             id='password', placeholder='Enter password')
         .form-group
-          label(for='confirmPassword') Confirm Password
-          input(type='password', name='confirmPassword', class='form-control', 
-            id='confirmPassword', placeholder='Confirm password')
-        .form-group
           label(for='email') Email
           input(type='email', name='email', class='form-control', 
             id='email', placeholder='Enter email')    
         .form-group
           label(for='confirmEmail') Confirm Email
           input(type='email', name='confirmEmail', class='form-control', 
-            id='confirm-email', placeholder='Confirm email')
+            id='confirmEmail', placeholder='Confirm email')
         .form-group
           button.btn.btn-default Register
           a(href="login") Or Login
