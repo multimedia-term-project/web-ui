@@ -84,7 +84,6 @@ router.post('/register', function(req, res, next){
 	
 	//confirm Email is the same as verify email
 	confirmEmailValidation = checkSame(email, confirmEmail);
-	console.log(email + " " + confirmEmail);
 
 	// //validate that it's an email
 	emailValidation = validateEmail(email);
@@ -114,7 +113,7 @@ router.post('/register', function(req, res, next){
 	if(error == 1){
 		res.render('register', {nameError, passwordError, emailError, confirmEmailError});
 	}
-
+	console.log(error);
 	if(error == 0){
 		var user={
 			"email": email, 
@@ -122,9 +121,10 @@ router.post('/register', function(req, res, next){
 			"name": userName,
 
 		};
-		 
+		console.log(user);
+		
 		var options = {
-  			host: 'localhost',
+  			host: '52.15.89.214',
   			path: '/user/signup',
   			//since we are listening on a custom port, we need to specify it by hand
   			port: '3000',
@@ -145,10 +145,14 @@ router.post('/register', function(req, res, next){
 		}
 
 		var req = http.request(options, callback);
-		//This is the data we are posting, it needs to be a string or a buffer
-		req.write(json.stringify(user));
-		req.end();
+		// //This is the data we are posting, it needs to be a string or a buffer
+		// req.write(json.stringify(user));
+		// req.end();
+		res.render('register');
+
+
 	}
+	
 
 });
 
