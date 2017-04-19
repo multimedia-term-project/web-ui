@@ -2,33 +2,31 @@ doctype 5
 html
   head
     title Dashboard :: Register
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css')
-    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='stylesheets/login.css')
   body
     p #{nameError} 
     p #{passwordError}
     p #{emailError}
     p #{confirmEmailError}
     .login.well
+      div(id='bg')
       h1  Enter information below!
       hr
       form(id='register-form', method='POST', action='/register')
         .form-group
-          label(for='username') Username
+          label Denvr
+          br
           input(type='text', name='userName', class='form-control', 
             id='userName', placeholder='Enter username')
         .form-group
-          label(for='password') Password
           input(type='password', name='password', class='form-control', 
             id='password', placeholder='Enter password')
         .form-group
-          label(for='email') Email
           input(type='email', name='email', class='form-control', 
             id='email', placeholder='Enter email')    
         .form-group
-          label(for='confirmEmail') Confirm Email
           input(type='email', name='confirmEmail', class='form-control', 
             id='confirmEmail', placeholder='Confirm email')
         .form-group
-          button.btn.btn-default Register
+          button.btn.btn-default(class='login') Register
           a(href="login") Or Login
